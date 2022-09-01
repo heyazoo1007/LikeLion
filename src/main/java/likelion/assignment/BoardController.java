@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -16,16 +17,33 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @PostMapping("/save")
-    public String save(@RequestParam String title, @RequestParam String author) {
-        boardService.save(title, author);
-        return "글이 추가 되었습니다.";
-    }
-
     @GetMapping
     public String list(Model model) {
         List<Board> list = boardService.findAll();
         model.addAttribute("list", list);
-        return "/list";
+        return "index";
     }
+
+    @GetMapping("/addForm")
+    public String addForm() {
+        return "save";
+    }
+
+    @PostMapping("/save")
+    public String save(@RequestParam String title, @RequestParam String author) {
+        Board board = new Board(title, author, LocalDate.now());
+        boardService.save(board);
+        return "redirect:/saved";
+    }
+    @GetMapping("/saved")
+    public String saved() {
+        return "saved";
+    }
+
+    @GetMapping("/close")
+    public String close() {
+        return "close";
+    }
+
+
 }

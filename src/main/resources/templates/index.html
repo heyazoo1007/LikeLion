@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h3>== 게시물 리스트 ==</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>no</th>
+            <th>title</th>
+            <th>date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="each : ${list}">
+            <td th:text="${each.sequence}">no</td>
+            <td th:text="${each.title}">title</td>
+            <td th:text="${each.createdDate}">date</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</br>
+<button class="btn btn-primary float-end"
+        onclick="location.href='save'"
+        type="button">등록</button>
+<button type="submit" onclick="location.href='close'">종료</button>
+</body>
+</html>

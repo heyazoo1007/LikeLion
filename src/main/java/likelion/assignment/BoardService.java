@@ -12,8 +12,7 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
-    public void save(String title, String author) {
-        Board board = new Board(title, author, LocalDate.now());
+    public void save(Board board) {
         boardRepository.save(board);
     }
 
