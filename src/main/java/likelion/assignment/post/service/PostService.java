@@ -5,6 +5,7 @@ import likelion.assignment.post.domain.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -13,11 +14,12 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    public void save(Post post) {
-        postRepository.save(post);
+    public void save(Post post , LocalDate createdDate) {
+        Post created = new Post(post.getTitle(), post.getAuthor(), createdDate);
+        postRepository.save(created);
     }
 
     public List<Post> findAll() {
-        return postRepository.findALl();
+        return postRepository.findAll();
     }
 }

@@ -14,19 +14,19 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
-    public List<Board> getList() {
-        return boardRepository.findAll();
-    }
-
-    public Board findById(Long id) {
-        return boardRepository.findById(id).get();
-    }
-
     public Board save(Board board) {
         String title = board.getTitle();
         String author = board.getAuthor();
         Board created = Board.of(title, author, 0, null, LocalDateTime.now());
 
         return boardRepository.save(created);
+    }
+
+    public Board findById(Long id) {
+        return boardRepository.findById(id).get();
+    }
+
+    public List<Board> getList() {
+        return boardRepository.findAll();
     }
 }

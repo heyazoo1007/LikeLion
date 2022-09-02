@@ -5,46 +5,48 @@ import likelion.assignment.post.domain.Post;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/post")
 public class PostController {
 
     private final PostService postService;
 
-    @GetMapping
+    @GetMapping("/list")
     public String list(Model model) {
-        List<Post> list = postService.findAll();
-        model.addAttribute("list", list);
-        return "post/list";
+        List<Post> all = postService.findAll();
+        if (all.size() >= 1) {
+            System.out.println("all.get(0) = " + all.get(0));
+        }
+        model.addAttribute("all", all);
+        return "post/index";
     }
 
-    @GetMapping("/addForm")
-    public String addForm() {
-        return "save";
+    @GetMapping("/save")
+    public String save() {
+        return "post/save";
     }
 
     @PostMapping("/save")
-    public String save(@RequestParam String title, @RequestParam String author) {
-        Post post = new Post(title, author, LocalDate.now());
-        postService.save(post);
-        return "redirect:/saved";
+    public String save(Post post) {
+        postService.save(post, LocalDate.now());
+        System.out.println("post = " + post);
+        return "redirect:/post/saved";
     }
+
     @GetMapping("/saved")
     public String saved() {
-        return "saved";
+        return "post/saved";
     }
 
     @GetMapping("/close")
     public String close() {
         return "post/close";
     }
-
 
 }

@@ -1,6 +1,7 @@
 package likelion.assignment.post.domain;
 
 import likelion.assignment.post.domain.Post;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class PostRepository {
         return store.get(id);
     }
 
-    public List<Post> findALl() {
+    public List<Post> findAll() {
         return new ArrayList<>(store.values());
     }
 }

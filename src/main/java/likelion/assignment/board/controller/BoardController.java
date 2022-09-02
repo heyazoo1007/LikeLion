@@ -16,10 +16,10 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @GetMapping("/list")
-    public String getList(Model model) {
-        model.addAttribute("list", boardService.getList());
-        return "list";
+    @PostMapping("/list/save")
+    public String save(Board board) {
+        Board saved = boardService.save(board);
+        return "redirect:/board/list/" + saved.getId();
     }
 
     @GetMapping("/list/{boardId}")
@@ -29,14 +29,15 @@ public class BoardController {
         return "board";
     }
 
+    @GetMapping("/list")
+    public String getList(Model model) {
+        model.addAttribute("list", boardService.getList());
+        return "list";
+    }
+
     @GetMapping("/list/save")
     public String saveForm() {
         return "saveForm";
     }
 
-    @PostMapping("/list/save")
-    public String save(Board board) {
-        Board saved = boardService.save(board);
-        return "redirect:/board/list/" + saved.getId();
-    }
 }

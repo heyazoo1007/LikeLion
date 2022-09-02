@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/save" th:action method="post">
+    title:<input type="text" name="title"/> author:<input type="text" name="author"/>
+
+</br>
+<button class="btn btn-primary float-end" type="submit">등록</button>
+<button type="submit" onclick="location.href='close'">종료</button>
+</form>
+</body>
+</html>

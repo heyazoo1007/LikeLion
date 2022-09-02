@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -16,8 +16,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="each : ${list}">
-            <td th:text="${each.sequence}">no</td>
+        <tr th:each="each : ${all}">
+            <td th:text="${each.id}">no</td>
             <td th:text="${each.title}">title</td>
             <td th:text="${each.createdDate}">date</td>
         </tr>
@@ -26,8 +26,8 @@
 </div>
 </br>
 <button class="btn btn-primary float-end"
-        onclick="location.href='save'"
+        onclick="location.href='/post/save'"
         type="button">등록</button>
-<button type="submit" onclick="location.href='close'">종료</button>
+<button type="submit" onclick="location.href='/post/close'">종료</button>
 </body>
 </html>
