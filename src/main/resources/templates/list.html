@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+
+<div class="container" style="max-width: 600px">
+    <div class="py-5 text-center">
+        <h2>게시판</h2>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary float-end"
+                    onclick="location.href='list/save'"
+                    type="button">글쓰기</button>
+        </div>
+    </div>
+    <hr class="my-4">
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>&nbsp;
+                <th>제목</th>&nbsp;
+                <th>글쓴이</th>&nbsp;
+                <th>작성시간</th>&nbsp;
+                <th>좋아요</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="board : ${list}">
+                <td><a href="board.html" th:href="@{/board/list/{boardId}(boardId=${board.id})}" th:text="${board.id}">No.</a></td>
+                <td><a href="board.html" th:href="@{|/board/list/${board.id}|}" th:text="${board.author}">글쓴이</a></td>
+                <td th:text="${board.author}">글쓴이</td>
+                <td th:text="${board.createdDate}">작성시간</td>
+                <td th:text="${board.likes}">좋아요</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div> <!-- /container -->
+
+</body>
+</html>

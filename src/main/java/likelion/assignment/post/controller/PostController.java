@@ -1,11 +1,12 @@
-package likelion.assignment;
+package likelion.assignment.post.controller;
 
+import likelion.assignment.post.service.PostService;
+import likelion.assignment.post.domain.Post;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
@@ -13,15 +14,15 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class BoardController {
+public class PostController {
 
-    private final BoardService boardService;
+    private final PostService postService;
 
     @GetMapping
     public String list(Model model) {
-        List<Board> list = boardService.findAll();
+        List<Post> list = postService.findAll();
         model.addAttribute("list", list);
-        return "index";
+        return "post/list";
     }
 
     @GetMapping("/addForm")
@@ -31,8 +32,8 @@ public class BoardController {
 
     @PostMapping("/save")
     public String save(@RequestParam String title, @RequestParam String author) {
-        Board board = new Board(title, author, LocalDate.now());
-        boardService.save(board);
+        Post post = new Post(title, author, LocalDate.now());
+        postService.save(post);
         return "redirect:/saved";
     }
     @GetMapping("/saved")
@@ -42,7 +43,7 @@ public class BoardController {
 
     @GetMapping("/close")
     public String close() {
-        return "close";
+        return "post/close";
     }
 
 

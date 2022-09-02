@@ -1,6 +1,5 @@
-package likelion.assignment;
+package likelion.assignment.post.domain;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +7,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class Board {
+public class Post {
 
     private Long id;
 
@@ -17,7 +16,7 @@ public class Board {
 
     private LocalDate createdDate;
 
-    public Board(String title, String author, LocalDate createdDate) {
+    public Post(String title, String author, LocalDate createdDate) {
         this.title = title;
         this.author = author;
     }
