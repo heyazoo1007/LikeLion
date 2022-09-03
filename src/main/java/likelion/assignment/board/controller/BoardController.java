@@ -1,19 +1,20 @@
 package likelion.assignment.board.controller;
 
-import likelion.assignment.board.controller.dto.SaveRequestDto;
 import likelion.assignment.board.domain.Board;
 import likelion.assignment.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/board")
 public class BoardController {
-
     private final BoardService boardService;
 
     @PostMapping("/list/save")
@@ -40,4 +41,9 @@ public class BoardController {
         return "saveForm";
     }
 
+    @GetMapping("/pagingList")
+    public String getPagingList(Model model, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+        model.addAttribute("pagingList", boardService.getPagingList(pageable));
+        return "pagingList";
+    }
 }

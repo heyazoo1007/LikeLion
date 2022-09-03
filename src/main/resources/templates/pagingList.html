@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<!--list.html -->
+<!-- pagingList.html -->
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
@@ -23,23 +23,23 @@
             <tr>
                 <th>No.</th>&nbsp;
                 <th>제목</th>&nbsp;
-                <th>작성자</th>&nbsp;
-                <th>작성날짜</th>&nbsp;
+                <th>글쓴이</th>&nbsp;
+                <th>작성시간</th>&nbsp;
                 <th>좋아요</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="board : ${list}">
+            <tr th:each="board : ${pagingList}">
                 <td><a href="board.html" th:href="@{/board/list/{boardId}(boardId=${board.id})}" th:text="${board.id}">No.</a></td>
-                <td><a href="board.html" th:href="@{|/board/list/${board.id}|}" th:text="${board.title}">제목</a></td>
-                <td th:text="${board.author}">작성자</td>
+                <td><a href="board.html" th:href="@{|/board/list/${board.id}|}" th:text="${board.author}">글쓴이</a></td>
+                <td th:text="${board.author}">글쓴이</td>
                 <td th:text="${board.createdDate}">작성날짜</td>
                 <td th:text="${board.likes}">좋아요</td>
             </tr>
             </tbody>
         </table>
     </div>
-</div> <!-- /container -->
+</div>
 </body>
 </html>
 

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,15 +29,15 @@ public class Board {
 
     private Integer likes;
 
-    //@OneToMany(mappedBy = "board", fetch =  FetchType.LAZY, cascade = CascadeType.REMOVE)
-    //private List<Comment> comments = new ArrayList<>();
+    @OneToMany(mappedBy = "board", fetch =  FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private List<Comment> comments = new ArrayList<>();
 
     @CreatedDate
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "Asia/Seoul")
-    private LocalDateTime createdDate;
+    private LocalDate createdDate;
 
     @Builder
-    public Board(String title, String author, Integer likes, List<Comment> comments, LocalDateTime createdDate) {
+    public Board(String title, String author, Integer likes, List<Comment> comments, LocalDate createdDate) {
         this.title = title;
         this.author = author;
         this.likes = likes;
@@ -45,7 +45,7 @@ public class Board {
         //this.comments = comments;
     }
 
-    public static Board of(String title, String author, Integer likes, List<Comment> comments, LocalDateTime createdDate) {
+    public static Board of(String title, String author, Integer likes, List<Comment> comments, LocalDate createdDate) {
         Board board = Board.builder()
                 .title(title)
                 .author(author)

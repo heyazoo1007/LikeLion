@@ -1,7 +1,5 @@
 package likelion.assignment.post.domain;
 
-import likelion.assignment.post.domain.Post;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
